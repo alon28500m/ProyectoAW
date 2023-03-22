@@ -10,7 +10,8 @@
     "contact.php" => 'Contacto',
     "foro.php" => 'Foro',
     "info.php" => 'Información',
-    "product.php" => 'Productos'
+    "product.php" => 'Productos',
+    "eventos.php" => 'Eventos'
   );
   
 ?>

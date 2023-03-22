@@ -170,7 +170,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-=======
+
 -- --------------------------------------------------------
 
 --
@@ -244,5 +244,73 @@ ALTER TABLE `events_users`
 ALTER TABLE `events_users`
   ADD CONSTRAINT `events_users_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `eventos` (`id`),
   ADD CONSTRAINT `events_users_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`mail`);
+COMMIT;
+
+
+--
+-- Table structure for table `ofertas`
+--
+
+CREATE TABLE `ofertas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(64) NOT NULL,
+  `descripcion` varchar(512) NOT NULL,
+  `codigo` varchar(64) NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ofertas`
+--
+
+INSERT INTO `ofertas` (`id`, `nombre`, `descripcion`, `codigo`, `fecha`) VALUES
+(1, '2X1 en munición', 'Descuento del 50% en la primera compra de munición en nuestra tienda online.', 'OFTMUN23', '2023-04-01'),
+(2, 'Equipamiento gratis', 'Con la primera compra superior a 10€ en nuestra tienda te regalamos equipamiento valorado en más de 20€ gratis', 'OFTEQP23','2024-01-01');
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ofertas`
+--
+ALTER TABLE `ofertas`
+  ADD PRIMARY KEY (`id`);
+COMMIT;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offers_users`
+--
+
+CREATE TABLE `offers_users` (
+  `offer_id` int(11) NOT NULL,
+  `user` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `offers_users`
+--
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `offers_users`
+--
+ALTER TABLE `offers_users`
+  ADD PRIMARY KEY (`offer_id`,`user`),
+  ADD KEY `user` (`user`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `offers_users`
+--
+ALTER TABLE `offers_users`
+  ADD CONSTRAINT `offers_users_ibfk_1` FOREIGN KEY (`offer_id`) REFERENCES `ofertas` (`id`),
+  ADD CONSTRAINT `offers_users_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`mail`);
 COMMIT;
 
